@@ -11,16 +11,19 @@ import {
   authenticate,
   isBiometricAvailable,
   type BiometricAuthResult,
+  BiometricAuthStatus,
 } from '@kjoonas1/react-native-biometrics';
 
 export default function App() {
-  const [status, setStatus] = useState<string>('Unknown');
+  const [status, setStatus] = useState<BiometricAuthStatus | 'Unknown'>(
+    'Unknown'
+  );
 
   const handleAuth = async () => {
     try {
       const available = isBiometricAvailable();
       if (!available) {
-        setStatus('Biometrics not available');
+        setStatus(BiometricAuthStatus.DISABLED);
         return;
       }
 
@@ -30,13 +33,13 @@ export default function App() {
 
       setStatus(result.status);
 
-      if (result.status === 'SUCCESS') {
+      if (result.status === BiometricAuthStatus.SUCCESS) {
         Alert.alert('Success', 'Authentication succeeded!');
       } else if (result.message) {
         Alert.alert(result.status, result.message);
       }
     } catch (err) {
-      setStatus('ERROR');
+      setStatus(BiometricAuthStatus.ERROR);
       Alert.alert('Error', 'Unexpected error during authentication');
     }
   };

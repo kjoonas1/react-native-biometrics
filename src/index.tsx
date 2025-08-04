@@ -9,3 +9,4 @@ export function isBiometricAvailable(): boolean {
 }
 
 export type { BiometricAuthResult } from './NativeBiometrics';
+export { BiometricAuthStatus } from './NativeBiometrics';
