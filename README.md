@@ -1,6 +1,9 @@
 # @kjoonas1/react-native-biometrics
 
-Simple biometrics library
+A simple, lightweight biometrics API for React Native apps **with zero dependencies**. Uses native BiometricPrompt (Android) and LocalAuthentication (iOS) directly.
+
+This library requries that your app is using the **New React Native Architecture** and **TurboModules** enabled.
+
 
 ## Installation
 
@@ -14,11 +17,14 @@ npm install @kjoonas1/react-native-biometrics
 
 
 ```js
-import { authenticate, isBiometricAvailable } from '@kjoonas1/react-native-biometrics';
+import { authenticate, isBiometricAvailable, BiometricAuthStatus } from '@kjoonas1/react-native-biometrics';
 
 const available = isBiometricAvailable();
 if (available) {
-    const authenticated = await authenticate('reason for auth')
+    const result = await authenticate('reason for auth')
+    if (result.status === BiometricAuthStatus.SUCCESS) {
+        // ...
+    }
     // ...
 }
 ```
