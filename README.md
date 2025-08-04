@@ -1,4 +1,4 @@
-# react-native-biometrics
+# @kjoonas1/react-native-biometrics
 
 Simple biometrics library
 
@@ -14,7 +14,7 @@ npm install @kjoonas1/react-native-biometrics
 
 
 ```js
-import { authenticate, isBiometricAvailable } from 'react-native-biometrics';
+import { authenticate, isBiometricAvailable } from '@kjoonas1/react-native-biometrics';
 
 const available = isBiometricAvailable();
 if (available) {

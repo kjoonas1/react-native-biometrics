@@ -32,6 +32,7 @@
     "!**/.*"
   ],
   "scripts": {
+    "build:codegen": "bob build --target codegen",
     "example": "yarn workspace react-native-biometrics-example",
     "test": "jest",
     "typecheck": "tsc",

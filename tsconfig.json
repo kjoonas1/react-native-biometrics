@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-biometrics": ["./src/index"]
+      "@kjoonas1/react-native-biometrics": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

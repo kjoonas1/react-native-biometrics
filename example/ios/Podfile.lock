@@ -1,5 +1,5 @@
 PODS:
-  - Biometrics (0.1.0):
+  - Biometrics (0.1.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1906,7 +1906,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Biometrics: 4dbda8df4971364c0b53b9c9ae82667f739f9ff0
+  Biometrics: 1443e59dab4bbb62fd0adb877749c5f017ed5060
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
