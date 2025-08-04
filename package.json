@@ -1,5 +1,5 @@
 {
-  "name": "react-native-biometrics",
+  "name": "@kjoonas1/react-native-biometrics",
   "version": "0.1.0",
   "description": "Simple biometrics library",
   "main": "./lib/module/index.js",
