@@ -16,11 +16,10 @@ npm install react-native-biometrics
 ```js
 import { authenticate, isBiometricAvailable } from 'react-native-biometrics';
 
-// ...
-
 const available = isBiometricAvailable();
 if (available) {
-    authenticate('reason for auth')
+    const authenticated = await authenticate('reason for auth')
+    // ...
 }
 ```
 
