@@ -14,11 +14,14 @@ npm install react-native-biometrics
 
 
 ```js
-import { multiply } from 'react-native-biometrics';
+import { authenticate, isBiometricAvailable } from 'react-native-biometrics';
 
 // ...
 
-const result = multiply(3, 7);
+const available = isBiometricAvailable();
+if (available) {
+    authenticate('reason for auth')
+}
 ```
 
 
@@ -29,7 +32,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
