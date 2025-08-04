@@ -6,7 +6,7 @@ Simple biometrics library
 
 
 ```sh
-npm install react-native-biometrics
+npm install @kjoonas1/react-native-biometrics
 ```
 
 
