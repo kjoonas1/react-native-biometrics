@@ -9,7 +9,6 @@ RCT_EXPORT_MODULE()
 
 - (NSNumber *)isBiometricAvailable {
   BiometricsImpl *swiftInstance = [BiometricsImpl shared];
-
   return [swiftInstance isBiometricAvailable];
 }
 
