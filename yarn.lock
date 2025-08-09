@@ -1533,7 +1533,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^19.8.1":
+"@commitlint/cli@npm:^19.8.1, @commitlint/cli@npm:latest":
   version: 19.8.1
   resolution: "@commitlint/cli@npm:19.8.1"
   dependencies:
@@ -2275,6 +2275,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@kjoonas1/react-native-biometrics@workspace:."
   dependencies:
+    "@commitlint/cli": latest
     "@commitlint/config-conventional": ^19.6.0
     "@eslint/compat": ^1.2.7
     "@eslint/eslintrc": ^3.3.0
@@ -2286,7 +2287,9 @@ __metadata:
     "@release-it/conventional-changelog": ^9.0.2
     "@types/jest": ^29.5.5
     "@types/react": ^19.0.0
-    commitlint: ^19.6.1
+    commitlint: latest
+    commitlint-plugin-cleanfeet: ^0.1.2
+    conventional-changelog-conventionalcommits: ^9.1.0
     del-cli: ^5.1.0
     eslint: ^9.22.0
     eslint-config-prettier: ^10.1.1
@@ -4660,7 +4663,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commitlint@npm:^19.6.1":
+"commitlint-plugin-cleanfeet@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "commitlint-plugin-cleanfeet@npm:0.1.2"
+  peerDependencies:
+    "@commitlint/lint": ">=7.6.0"
+  checksum: 585d6f6af678fdd0221001803c947665cd3bb97865768ad6749ee7a4ea1658e2e9913bf1fc5104d642dcb716022bfab3c18b3ee92ffa59eb4cf45b1aadda3c84
+  languageName: node
+  linkType: hard
+
+"commitlint@npm:latest":
   version: 19.8.1
   resolution: "commitlint@npm:19.8.1"
   dependencies:
@@ -4813,6 +4825,15 @@ __metadata:
   dependencies:
     compare-func: ^2.0.0
   checksum: af80a3294ec833b6ca6b13874c275952391319dd0ebb771dbcf0b837a2f8504c197e894a3fc5def44574a04daa038a94cae8d00f8222e843bc788b6911a1eff4
+  languageName: node
+  linkType: hard
+
+"conventional-changelog-conventionalcommits@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "conventional-changelog-conventionalcommits@npm:9.1.0"
+  dependencies:
+    compare-func: ^2.0.0
+  checksum: 9f40dc7c8b96cb44d07b835f19ea76506b151be1f17558d57c7f266c5f76d7c64d1d4c3b39f16ba5a8a1934b76835235f00e2f1d25baa1f3ddf01b52a162bd44
   languageName: node
   linkType: hard
 

@@ -1,8 +1,9 @@
 PODS:
-  - Biometrics (0.2.2):
+  - Biometrics (0.3.0):
     - DoubleConversion
     - glog
     - hermes-engine
+    - OpenSSL-Universal
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -32,6 +33,7 @@ PODS:
   - hermes-engine (0.79.2):
     - hermes-engine/Pre-built (= 0.79.2)
   - hermes-engine/Pre-built (0.79.2)
+  - OpenSSL-Universal (3.3.3001)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1758,6 +1760,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - OpenSSL-Universal
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1906,7 +1909,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Biometrics: 629efb90caa75f442b6de04b16e41bfbbaef99db
+  Biometrics: f9c2c5b49fb98ed9c669d28e7f45ee65cc00ad76
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
@@ -1914,6 +1917,7 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 314be5250afa5692b57b4dd1705959e1973a8ebe
+  OpenSSL-Universal: 6082b0bf950e5636fe0d78def171184e2b3899c2
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 83ffb90c23ee5cea353bd32008a7bca100908f8c
   RCTRequired: eb7c0aba998009f47a540bec9e9d69a54f68136e

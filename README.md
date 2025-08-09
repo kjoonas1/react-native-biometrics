@@ -5,14 +5,11 @@ A simple, lightweight biometrics API for React Native apps **with zero runtime d
 
 This library requries that your app is using the **New React Native Architecture** and **TurboModules** enabled.
 
-
 ## Installation
-
 
 ```sh
 npm install @kjoonas1/react-native-biometrics
 ```
-
 
 ## Usage
 
@@ -38,7 +35,6 @@ if (available) {
     // ...
 }
 ```
-
 
 ## Contributing
 

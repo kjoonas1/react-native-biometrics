@@ -20,9 +20,30 @@ export type BiometricAuthResult =
   | { status: BiometricAuthStatus.ERROR; message?: string }
   | { status: BiometricAuthStatus.FALLBACK; message?: string };
 
+export type BiometricAuthChallengeResult = BiometricAuthResult & {
+  signature: string;
+};
+
+export interface KeyPairResult {
+  publicKey: string;
+  status: 'SUCCESS' | 'ERROR';
+}
+
 interface Spec extends TurboModule {
+  generateKeyPair(): string | undefined;
+  deleteKeyPair(): boolean;
   isBiometricAvailable(): boolean;
+  getPublicKey(): string | undefined;
   authenticate(reason: string): Promise<BiometricAuthResult>;
+  authenticateWithChallenge(
+    reason: string,
+    challenge: string
+  ): Promise<BiometricAuthChallengeResult>;
+
+  /**
+   * iOS only method — checks if NSFaceIDUsageDescription is set in Info.plist
+   */
+  isFaceIDUsageDescriptionPresent(): boolean;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('Biometrics');

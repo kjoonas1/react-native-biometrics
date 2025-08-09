@@ -34,6 +34,9 @@ android {
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+    ndk {
+      abiFilters "armeabi-v7a", "arm64-v8a"
+    }
   }
 
   buildFeatures {
@@ -55,6 +58,13 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
+  externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
+        }
+    }
+
   sourceSets {
     main {
       java.srcDirs += [
@@ -75,6 +85,7 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 dependencies {
   implementation "com.facebook.react:react-android"
   implementation "androidx.biometric:biometric:1.1.0"
+  implementation "androidx.security:security-crypto:1.1.0"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 

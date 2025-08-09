@@ -8,12 +8,47 @@ import com.biometrics.NativeBiometricsSpec
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 
 class BiometricsModule(private val reactContext: ReactApplicationContext) :
   NativeBiometricsSpec(reactContext) {
 
   companion object {
-    const val NAME = "Biometrics"
+      const val NAME = "Biometrics"
+
+      init {
+          System.loadLibrary("cryptohelper")
+      }
+  }
+
+  override fun getPublicKey(): String? {
+    return getSecuredKey("publicKey")
+  }
+
+  override fun deleteKeyPair(): Boolean {
+    return true
+  }
+
+  override fun authenticateWithChallenge(reason: String, challenge: String, promise: Promise) {
+    promise.resolve(createResultMap("SUCCESS"))
+  }
+
+  override fun isFaceIDUsageDescriptionPresent(): Boolean {
+    return false
+  }
+
+  override fun generateKeyPair(): String? {
+    val keys = generateKeyPairNative()
+    if (keys == null || keys.size < 2) {
+        return null
+    }
+    val privateKey = keys[0]
+    val publicKey = keys[1]
+    saveSecureKey("privateKey", privateKey)
+    saveSecureKey("publicKey", publicKey)
+
+    return publicKey
   }
 
   override fun isBiometricAvailable(): Boolean {
@@ -79,6 +114,30 @@ class BiometricsModule(private val reactContext: ReactApplicationContext) :
     }
   }
 
+  private fun saveSecureKey(key: String, value: String) {
+    val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    val sharedPreferences = EncryptedSharedPreferences.create(
+        "secure_prefs",
+        masterKeyAlias,
+        reactContext,
+        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+    )
+    sharedPreferences.edit().putString(key, value).apply()
+}
+
+  private fun getSecuredKey(key: String): String? {
+    val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    val sharedPreferences = EncryptedSharedPreferences.create(
+        "secure_prefs",
+        masterKeyAlias,
+        reactContext,
+        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+    )
+    return sharedPreferences.getString(key, null)
+  }
+
   private fun createResultMap(status: String, message: String? = null) =
     Arguments.createMap().apply {
       putString("status", status)
@@ -86,4 +145,6 @@ class BiometricsModule(private val reactContext: ReactApplicationContext) :
     }
 
   override fun getName(): String = NAME
+
+  private external fun generateKeyPairNative(): Array<String>?
 }
