@@ -21,12 +21,12 @@ Add the following key to your Info.plist to allow Face ID authentication on iOS:
 <string>This app uses Face ID to authenticate you.</string>
 ```
 
-### Example
+### Example (Simple local authentication)
 
 ```js
 import { authenticate, isBiometricAvailable, BiometricAuthStatus } from '@kjoonas1/react-native-biometrics';
 
-const available = isBiometricAvailable();
+const available = isBiometricAvailable()
 if (available) {
     const result = await authenticate('reason for auth')
     if (result.status === BiometricAuthStatus.SUCCESS) {
@@ -34,6 +34,40 @@ if (available) {
     }
     // ...
 }
+```
+
+### Example (Authenticate with challenge)
+```js
+import { 
+    authenticate,
+    isBiometricAvailable,
+    BiometricAuthStatus,
+    generateKeyPair,
+    getPublicKey,
+} from '@kjoonas1/react-native-biometrics'
+import { useEffect } from 'react'
+
+// On first startup, generate keys and store the public key on your server
+useEffect(() => {
+    if (!getPublicKey()) {
+        const publicKey = generateKeyPair()
+        // Store publicKey on server
+    }
+}, [])
+
+const handleAuthenticate = async () => {
+    if (isBiometricAvailable()) {
+        // Request challenge from server
+        const challenge = /* get challenge from server */
+
+        // Authenticate user and sign challenge
+        const { status, signature } = authenticate('Authenticate to proceed', challenge)
+        if (status === BiometricAuthStatus.SUCCESS) {
+            // Send signature to server for verification
+        }
+    }
+}
+
 ```
 
 ## Contributing
