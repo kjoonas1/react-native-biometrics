@@ -40,6 +40,18 @@ public class BiometricsImpl: NSObject {
   }
   
   @objc
+  public func deleteKeyPair() -> NSNumber {
+    let privSuccess = deleteFromKeychain("biometricPrivateKey");
+    let pubSuccess = deleteFromKeychain("biometricPublicKey");
+    guard privSuccess && pubSuccess else {
+      print("Failed to delete keys from Keychain.")
+
+      return NSNumber(value: false)
+    }
+    return NSNumber(value: true)
+  }
+  
+  @objc
   public func getPublicKey() -> NSString? {
     guard let publicKeyData = loadPublicKeyFromKeychain() else { return nil }
     return NSString(data: publicKeyData, encoding: String.Encoding.utf8.rawValue)
@@ -229,7 +241,7 @@ public class BiometricsImpl: NSObject {
     guard let access = SecAccessControlCreateWithFlags(
       nil,
       kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-      .biometryAny,
+      .biometryCurrentSet,
       nil
     ) else {
       return false
@@ -238,8 +250,6 @@ public class BiometricsImpl: NSObject {
     let query: [String: Any] = [
       kSecClass as String: kSecClassGenericPassword,
       kSecAttrAccount as String: key,
-      kSecValueData as String: data,
-      kSecAttrAccessControl as String: access
     ]
     
     SecItemDelete(query as CFDictionary)

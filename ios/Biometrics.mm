@@ -31,7 +31,8 @@ RCT_EXPORT_MODULE()
 }
 
 - (NSNumber *)deleteKeyPair {
-  
+  BiometricsImpl *swiftInstance = [BiometricsImpl shared];
+  return [swiftInstance deleteKeyPair];
 }
 
 - (nullable NSString *)getPublicKey {

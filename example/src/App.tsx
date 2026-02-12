@@ -15,6 +15,7 @@ import {
   generateKeyPair,
   getPublicKey,
   type BiometricAuthChallengeResult,
+  deleteKeyPair,
 } from '@kjoonas1/react-native-biometrics';
 
 const base64Chars =
@@ -150,6 +151,11 @@ export default function App() {
     }
   };
 
+  const handleDeleteKeyPair = () => {
+    deleteKeyPair();
+    setPublicKey('');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Biometric Authentication</Text>
@@ -172,6 +178,9 @@ export default function App() {
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCreateKeyPair} style={styles.button}>
           <Text style={styles.buttonText}>Create Key Pair</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleDeleteKeyPair} style={styles.button}>
+          <Text style={styles.buttonText}>Delete key pair</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
